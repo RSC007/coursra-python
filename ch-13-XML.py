@@ -20,7 +20,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 while True:
     address = input('Enter location: ')
-    if address == 'done': break             # to exit the infinity loop type "done"
+    if len(address)<1: break             # to exit the infinity loop press 'enter'
 
     parms = dict()
     parms['address'] = address
@@ -31,14 +31,14 @@ while True:
 
     data = uh.read()
     print('Retrieved', len(data), 'characters')
-    print(data.decode())                # your whole data printed in string format as it is
+    print(data.decode())                # your whole data convert from utf-8 stnderd to human readble formate as it 
     tree = ET.fromstring(data)          # this statement parse your decoded string
 
-results = tree.findall('.//count')      # to find perticular tag count
+    results = tree.findall('.//count')      # to find perticular tag count
 
-total = 0
-for item in results:
-    lat = item.text
-    total = total + int(lat)
-print(total)
+    total = 0
+    for item in results:
+        lat = item.text
+        total = total + int(lat)
+    print(total)
     
